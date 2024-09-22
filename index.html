@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,5 +80,40 @@
             }
         }
     </script>
+</body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROLL_NUMBER_HERE</title>  
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>API Frontend</h1>
+    <div>
+        <h2>Input JSON</h2>
+        <textarea id="jsonInput" rows="6" cols="50" placeholder='{"data": ["A", "C", "z"]}'></textarea>
+        <button onclick="handleSubmit()">Submit</button>
+        <div id="inputError" class="error"></div>
+    </div>
+
+    <div id="multiSelectContainer" style="display: none;">
+        <h2>Select Filters</h2>
+        <select id="multiSelect" multiple>
+            <option value="alphabets">Alphabets</option>
+            <option value="numbers">Numbers</option>
+            <option value="highestLowercase">Highest Lowercase Alphabet</option>
+        </select>
+        <button onclick="filterResponse()">Filter Response</button>
+        <div id="filteredResult"></div>
+    </div>
+
+    <div id="responseContainer" class="result"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
