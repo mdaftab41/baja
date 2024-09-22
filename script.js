@@ -28,26 +28,57 @@ async function handleSubmit() {
     }
 }
 
+// function filterResponse() {
+//     const response = JSON.parse(document.getElementById('responseContainer').innerText);
+//     const selectedOptions = Array.from(document.getElementById('multiSelect').selectedOptions).map(option => option.value);
+//     const filteredData = {};
+
+//     // Build the filtered data based on selected options
+//     if (selectedOptions.includes("alphabets")) {
+//         filteredData.numbers = response.alphabets || []; // Use empty array if not available
+//     }
+//     if (selectedOptions.includes("numbers")) {
+//         filteredData.numbers = response.numbers || []; // Use empty array if not available
+//     }
+//     if (selectedOptions.includes("highestLowercase")) {
+//         filteredData.highestLowercase = response.highest_lowercase_alphabet || null; // Use null if not available
+//     }
+
+//     // Format the output for display
+//     const resultStrings = Object.entries(filteredData)
+//         .map(([key, value]) => `${key}: ${value.length > 0 ? value.join(', ') : 'No data'}`)
+//         .join('\n');
+
+//     document.getElementById('filteredResult').innerText = resultStrings || 'No data available for selected filters';
+// }
+ 
 function filterResponse() {
-    const response = JSON.parse(document.getElementById('responseContainer').innerText);
-    const selectedOptions = Array.from(document.getElementById('multiSelect').selectedOptions).map(option => option.value);
-    const filteredData = {};
+    const responseText = document.getElementById('responseContainer').innerText;
 
-    // Build the filtered data based on selected options
-    if (selectedOptions.includes("alphabets")) {
-        filteredData.numbers = response.alphabets || []; // Use empty array if not available
-    }
-    if (selectedOptions.includes("numbers")) {
-        filteredData.numbers = response.numbers || []; // Use empty array if not available
-    }
-    if (selectedOptions.includes("highestLowercase")) {
-        filteredData.highestLowercase = response.highest_lowercase_alphabet || null; // Use null if not available
-    }
+    if (responseText) {
+        const response = JSON.parse(responseText);
+        const selectedOptions = Array.from(document.getElementById('multiSelect').selectedOptions).map(option => option.value);
+        const filteredData = {};
 
-    // Format the output for display
-    const resultStrings = Object.entries(filteredData)
-        .map(([key, value]) => `${key}: ${value.length > 0 ? value.join(', ') : 'No data'}`)
-        .join('\n');
+        // Build the filtered data based on selected options
+        if (selectedOptions.includes("alphabets")) {
+            filteredData.alphabets = response.alphabets || []; // Use empty array if not available
+        }
+        if (selectedOptions.includes("numbers")) {
+            filteredData.numbers = response.numbers || []; // Use empty array if not available
+        }
+        if (selectedOptions.includes("highestLowercase")) {
+            filteredData.highestLowercase = response.highest_lowercase_alphabet || null; // Use null if not available
+        }
 
-    document.getElementById('filteredResult').innerText = resultStrings || 'No data available for selected filters';
+        // Format the output for display
+        const resultStrings = Object.entries(filteredData)
+            .map(([key, value]) => `${key}: ${value.length > 0 ? value.join(', ') : 'No data'}`)
+            .join('\n');
+
+        document.getElementById('filteredResult').innerText = resultStrings || 'No data available for selected filters';
+
+        // Clear the response container
+        document.getElementById('responseContainer').innerText = '';
+    }
 }
