@@ -1,95 +1,9 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Frontend</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .result {
-            margin-top: 20px;
-            white-space: pre-wrap; /* Ensures proper formatting of JSON output */
-        }
-    </style>
-</head>
-<body>
-    <h1>API Frontend</h1>
-    <div>
-        <h2>POST Request</h2>
-        <textarea id="postData" rows="6" cols="50" placeholder='{"data": ["M", "1", "334"], "file_b64": "BASE_64_STRING"}'></textarea><br><br>
-        <button onclick="sendPostRequest()">Send POST Request</button>
-        <div id="postResult" class="result"></div>
-    </div>
-    <div>
-        <h2>GET Request</h2>
-        <button onclick="sendGetRequest()">Send GET Request</button>
-        <div id="getResult" class="result"></div>
-    </div>
-
-    <script>
-        const apiUrl = 'https://bajaj-test.netlify.app/.netlify/functions/bfhl'; // Ensure the URL is correct
-
-        // Send POST Request
-        async function sendPostRequest() {
-            const data = document.getElementById('postData').value;
-
-            // Basic JSON validation
-            try {
-                JSON.parse(data); // Will throw an error if invalid
-            } catch (error) {
-                document.getElementById('postResult').innerText = 'Invalid JSON: ' + error.message;
-                return;
-            }
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: data
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-
-                const result = await response.json();
-                document.getElementById('postResult').innerHTML = '<pre>' + JSON.stringify(result, null, 2) + '</pre>';
-            } catch (error) {
-                document.getElementById('postResult').innerText = 'Error: ' + error.message;
-            }
-        }
-
-        // Send GET Request
-        async function sendGetRequest() {
-            try {
-                const response = await fetch(apiUrl);
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-
-                const result = await response.json();
-                document.getElementById('getResult').innerHTML = '<pre>' + JSON.stringify(result, null, 2) + '</pre>';
-            } catch (error) {
-                document.getElementById('getResult').innerText = 'Error: ' + error.message;
-            }
-        }
-    </script>
-</body>
-</html>
- -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROLL_NUMBER_HERE</title>  
+    <title>ROLL_NUMBER_HERE</title>  <!-- Replace with your roll number -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -109,7 +23,7 @@
             <option value="highestLowercase">Highest Lowercase Alphabet</option>
         </select>
         <button onclick="filterResponse()">Filter Response</button>
-        <div id="filteredResult"></div>
+        <div id="filteredResult" class="result"></div>
     </div>
 
     <div id="responseContainer" class="result"></div>

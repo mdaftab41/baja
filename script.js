@@ -35,7 +35,7 @@ function filterResponse() {
 
     // Build the filtered data based on selected options
     if (selectedOptions.includes("alphabets")) {
-        filteredData.alphabets = response.alphabets || []; // Use empty array if not available
+        filteredData.numbers = response.alphabets || []; // Use empty array if not available
     }
     if (selectedOptions.includes("numbers")) {
         filteredData.numbers = response.numbers || []; // Use empty array if not available
@@ -44,5 +44,10 @@ function filterResponse() {
         filteredData.highestLowercase = response.highest_lowercase_alphabet || null; // Use null if not available
     }
 
-    document.getElementById('filteredResult').innerText = JSON.stringify(filteredData, null, 2);
+    // Format the output for display
+    const resultStrings = Object.entries(filteredData)
+        .map(([key, value]) => `${key}: ${value.length > 0 ? value.join(', ') : 'No data'}`)
+        .join('\n');
+
+    document.getElementById('filteredResult').innerText = resultStrings || 'No data available for selected filters';
 }
